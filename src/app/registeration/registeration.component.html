@@ -1,0 +1,45 @@
+<p>registeration works!</p>
+<p>reactive-form works!</p>
+
+<h2>Reactive Form Example </h2>
+<!-- look very similar to template driven forms example.
+ However, instead of using ngModel and various form directives, 
+ we are binding our myForm to our template with [FormGroup] and formControlName. -->
+
+<!--
+    so myForm is a object  FormGroup (the myForm we initialized in the constructor). 
+then we created input fields for each FormControl in the myForm and 
+we bound the input fields to the myForm using formControlName,
+ setting the formControlName to the name of our form control. 
+ Now we have a form template built with data bound to our Component-->
+
+<!-- latest version of angular : -->
+<form [formGroup]="myForm" (ngSubmit)="onSubmit(myForm.value)">
+  <div>
+    <label>Your Name :</label>
+    <input type="text" id="textId" placeholder="you name" [formControl]="myForm.controls['var_name']">
+    <!-- validation step 3-->
+    <div *ngIf="!var_name?.valid && (var_name?.dirty ||var_name?.touched)">
+      <div [hidden]="!var_name.errors.required">
+        First Name is required
+      </div>
+      <div [hidden]="!var_name.errors.minlength">
+        Min Length is 10
+      </div>
+    </div>
+  </div>
+  <br>
+
+
+  <div class="row mb-3">
+    <label for="inputPassword3" class="col-sm-2 col-form-label">password</label>
+    <div class="col-sm-5">
+      <input type="password" class="form-control" id="inputPassword3"  [formControl]="myForm.controls['var_psw']">
+    </div>
+	
+  </div>
+  <br>
+  <button type="submit">Submit</button>
+
+
+</form>

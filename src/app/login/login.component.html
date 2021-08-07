@@ -1,0 +1,68 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login Page</title>
+</head>
+<body>
+    <br>
+<div class="container">
+	<div class="d-flex justify-content-center h-100">
+		<div class="card">
+			<div class="card-header">
+				<h3>Login to your account</h3>
+			</div>
+			<div class="card-body">
+				<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-user"></i></span>
+						</div>
+						<input type="text" class="form-control" formControlName="UserID" placeholder="UserID" id="UserID">
+						<div *ngIf="submitted && loginForm.controls.UserID.errors" class="error">											
+							<div class="text-danger" *ngIf="loginForm.controls.UserID.errors.required">UserID is required</div>											
+						  </div>											
+										  
+						
+					</div>
+					<div class="input-group form-group">
+						<div class="input-group-prepend">
+							<span class="input-group-text"><i class="fas fa-key"></i></span>
+						</div>
+						<input type="password" class="form-control"formControlName="password" placeholder="password" id="password">
+						<div *ngIf="submitted && loginForm.controls.password.errors" class="error">											
+							<div class="text-danger" *ngIf="loginForm.controls.password.errors.required">Password is required</div>											
+						  </div>
+					</div>
+					<div class="row align-items-center remember">
+						<input type="checkbox">Remember Me
+					</div>
+					<div class="form-group">
+						<input type="submit"  value="Login" [routerLink]="['/dashboard']"  id ="Login"class="btn float-right text-center login_btn">
+					
+					</div>
+					<div *ngIf="invalidLogin" class="error">											
+						<div class="text-danger">Invalid credentials.</div>											
+					  </div>
+				</form>
+                <br/>
+                <br/>
+			<!--</div>-->
+			<!--<div class="card-footer">-->
+				<div class="d-flex justify-content-center links">
+					First Time User ?<a href="#">Register</a>
+				</div>
+                <br/>
+				<div class="d-flex justify-content-center links">
+					<a href="#" [routerLink]="['/forgetPassword']" >Forgot your password?</a>
+				</div>
+                <br/>
+                <div class="d-flex justify-content-center links">
+					<a href="#" [routerLink]="['/forgetUserId']" >Forgot your User Id</a>
+				</div>
+                </div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
